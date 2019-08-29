@@ -20,9 +20,17 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      home: path.resolve(__dirname, "./src/")
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 };

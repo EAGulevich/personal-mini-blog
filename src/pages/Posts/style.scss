@@ -1,0 +1,40 @@
+.posts {
+  &__container {
+    overflow: auto;
+    height: calc(100vh - 57px);
+    padding: 20px;
+  }
+
+  &__empty-block {
+    border: 1px solid #32373b;
+    background: #d4d4d4;
+    border: 1px solid #32373b;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+    padding: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__empty-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  &__empty-text {
+    margin-bottom: 30px;
+  }
+
+  &__empty-btns {
+    button {
+      margin: 0 10px;
+    }
+  }
+
+  .post {
+    margin-bottom: 20px;
+  }
+}

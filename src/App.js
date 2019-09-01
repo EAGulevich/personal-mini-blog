@@ -17,7 +17,9 @@ const LINKS = [
 class App extends Component {
   constructor(props) {
     super(props);
+
   }
+
   render() {
     return (
       <div className="app">
@@ -39,7 +41,7 @@ class App extends Component {
         <div className="page">
           <Switch>
             <Route path="/" exact component={Posts} />
-            <Route path="/post/id" component={PostView} />
+            <Route path="/post/:id?" component={PostView} />
             <Route path="/edit/:id?" component={PostEdit} />
             <Route component={NotFound} />
           </Switch>

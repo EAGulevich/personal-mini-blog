@@ -17,14 +17,14 @@ class Posts extends Component {
       /**количество комментариев */
       count: PropTypes.number.isRequired,
       /**ссылка на страницу поста */
-      link: PropTypes.string.isRequired
+      link: PropTypes.string.isRequired,
     };
   }
   static get defaultProps() {
     return {
       name: "",
       description: "",
-      count: 0
+      count: 0,
     };
   }
   constructor(props) {

@@ -1,45 +1,52 @@
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch } from "react-router-dom";
+import { withRouter } from "react-router";
 import React, { Component } from "react";
 
 import "./App.scss";
+import CG from "home/utils/CG";
 import NotFound from "home/components/NotFound";
 import PostEdit from "home/pages/PostEdit";
 import Posts from "home/pages/Posts";
 import PostView from "home/pages/PostView";
 
+const LINKS = [
+  { name: "Главная", to: "/" },
+  { name: "Создать пост", to: "/edit" }
+];
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="app">
-        <h1>Personal mini-blog!</h1>
-
-        <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/">Posts</Link>
-              </li>
-              <li>
-                <Link to="/post/7">PostView</Link>
-              </li>
-              <li>
-                <Link to="/edit">PostEdit</Link>
-              </li>
-              <li>
-                <Link to="/dsafdsfa">NotFound</Link>
-              </li>
-            </ul>
-            <Switch>
-              <Route path="/" exact component={Posts} />
-              <Route path="/post/id" component={PostView} />
-              <Route path="/edit/:id?" component={PostEdit} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
-        </Router>
+        <nav className={CG("panel")}>
+          {LINKS.map(link => {
+            return (
+              <Link
+                key={link.to}
+                className={CG("panel", "link", [
+                  this.props.location.pathname == link.to ? "active" : ""
+                ])}
+                to={link.to}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+        </nav>
+        <div className="page">
+          <Switch>
+            <Route path="/" exact component={Posts} />
+            <Route path="/post/id" component={PostView} />
+            <Route path="/edit/:id?" component={PostEdit} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -1,6 +1,58 @@
-div {
-  h1 {
-    color: green;
-    text-align: center;
+* {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+$backgroundColor: #f1f1f1;
+$panelWidth: 240px;
+
+.panel {
+  background: #23282c;
+  border: 1px solid;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: $panelWidth;
+
+  &__link {
+    background: #32373b;
+    color: #bbb;
+    display: block;
+    font-size: 18px;
+    padding: 20px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &--active {
+      color: #fff;
+
+      &::after {
+        $size: 12px;
+        border: $size solid transparent;
+        border-right: $size solid $backgroundColor;
+        content: " ";
+        display: block;
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
   }
+}
+
+.page {
+  background: $backgroundColor;
+  height: 100vh;
+  left: $panelWidth;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

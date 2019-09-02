@@ -15,8 +15,9 @@ class Posts extends Component {
     super(props);
 
     this.CG = CG.bind(this, "posts");
-    this.onGeneratePosts = this.onGeneratePosts.bind(this);
     this.onFetch = this.onFetch.bind(this);
+    this.onGeneratePosts = this.onGeneratePosts.bind(this);
+    this.onScroll = this.onScroll.bind(this);
     this.renderContent = this.renderContent.bind(this);
 
     this.postRefs = [];
@@ -29,11 +30,27 @@ class Posts extends Component {
     this.onFetch();
   }
 
+  getPerPage() {
+    return Number(window.localStorage.getItem("perPage"));
+  }
+
+  setPerPage(perPage) {
+    window.localStorage.setItem("perPage", perPage);
+  }
+
   onFetch() {
-    let posts = PostRepository.getCollection();
+    let perPage = this.getPerPage();
+
+    if (!perPage) {
+      perPage = 10;
+      this.setPerPage(perPage);
+    }
+
+    let response = PostRepository.getCollection(perPage);
     this.setState(
       {
-        posts
+        posts: response.data,
+        total: response.total
       },
       () => {
         //Проскролить страницу до нужной записи, если вернулись со страницы просмотра поста
@@ -41,7 +58,7 @@ class Posts extends Component {
         if (locationState && locationState.postId) {
           const container = ReactDOM.findDOMNode(this.refs.container);
           const element = ReactDOM.findDOMNode(this.refs[locationState.postId]);
-          container.scroll(0, element.offsetTop - 300);
+          container.scroll(0, element.offsetTop - 150);
         }
       }
     );
@@ -50,6 +67,25 @@ class Posts extends Component {
   onGeneratePosts() {
     PostRepository.generate(30, 5);
     this.onFetch();
+  }
+
+  onScroll(e) {
+    if (this.state.posts.length >= this.state.total) {
+      return;
+    }
+    let container = e.target;
+    let reachedBottom =
+      container.clientHeight + container.scrollTop >
+      container.scrollHeight - 50;
+
+    if (reachedBottom) {
+      let currentPerPage = this.getPerPage();
+      let newPerPage = currentPerPage + 5;
+      this.setPerPage(newPerPage);
+      this.onFetch();
+    }
+
+    return;
   }
 
   renderContent() {
@@ -93,7 +129,11 @@ class Posts extends Component {
     return (
       <div className={this.CG()}>
         <Header title="Все записи" />
-        <div className={this.CG("container")} ref="container">
+        <div
+          className={this.CG("container")}
+          ref="container"
+          onScroll={this.onScroll}
+        >
           {this.state.posts.length > 0
             ? this.renderContent()
             : this.renderEmpty()}

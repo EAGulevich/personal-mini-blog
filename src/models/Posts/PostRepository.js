@@ -71,16 +71,21 @@ class PostRepository {
 
   /**
    * Получение постов
-   * @param {Object} query - запрос
+   * @param {Number} perPage - сколько отдать записей
    * @returns {Object}
    */
-  getCollection(query) {
+  getCollection(perPage) {
+    let response = { data: [], total: 0 };
     let posts = window.localStorage.getItem("posts");
     if (!posts) {
-      return [];
+      return response;
     }
     posts = JSON.parse(posts);
-    return posts;
+
+    response.total = posts.length;
+    response.data = posts.slice(0, perPage);
+
+    return response;
   }
 
   /**

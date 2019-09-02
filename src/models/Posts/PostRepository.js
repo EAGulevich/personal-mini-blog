@@ -1,5 +1,9 @@
 import faker from "faker";
 
+const POSTS = "posts";
+
+const LS = window.localStorage;
+
 /**
  * Класс для работы с постами
  */
@@ -19,7 +23,7 @@ class PostRepository {
       let post = this.create();
       post.name = faker.lorem.words(Math.random() * 5 + 1);
       post.shortDescription = faker.lorem.paragraphs(3);
-      post.description = faker.lorem.paragraphs(10);
+      post.description = faker.lorem.paragraphs(20);
 
       let commentCount = Math.floor(Math.random() * (maxCommentCount + 1));
       let comments = [];
@@ -33,7 +37,7 @@ class PostRepository {
       post.comments = comments;
       posts.push(post);
     }
-    window.localStorage.setItem("posts", JSON.stringify(posts));
+    LS.setItem(POSTS, JSON.stringify(posts));
     return;
   }
 
@@ -66,7 +70,12 @@ class PostRepository {
    * @returns {Object}
    */
   get(id) {
-    return;
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+
+    let post = posts.find(p => p.id === id);
+
+    return post;
   }
 
   /**
@@ -76,7 +85,7 @@ class PostRepository {
    */
   getCollection(perPage) {
     let response = { data: [], total: 0 };
-    let posts = window.localStorage.getItem("posts");
+    let posts = LS.getItem(POSTS);
     if (!posts) {
       return response;
     }
@@ -86,6 +95,24 @@ class PostRepository {
     response.data = posts.slice(0, perPage);
 
     return response;
+  }
+
+  /**
+   * Добавление комментария к посту
+   * @param {String} id - идентификатор поста
+   * @param {Object} comment - добавляемый комментарий (должен содержать строковые поля author и text)
+   * @returns {Object}
+   */
+  addComment(id, comment) {
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+
+    let post = posts.find(p => p.id === id);
+    post.comments.push(comment);
+
+    LS.setItem(POSTS, JSON.stringify(posts));
+
+    return post;
   }
 
   /**

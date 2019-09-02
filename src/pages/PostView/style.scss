@@ -1,0 +1,7 @@
+@import "home/styles/container.scss";
+
+.post-view {
+  &__container {
+    @include container();
+  }
+}

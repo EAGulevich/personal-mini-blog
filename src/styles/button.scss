@@ -7,9 +7,16 @@ button {
   border-radius: 4px;
   cursor: pointer;
   color: #23282c;
+  font-size: 16px;
 
   &:hover {
     background: #23282c;
     color: #f1f1f1;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: #f1f1f1;
+    color: #23282c;
   }
 }

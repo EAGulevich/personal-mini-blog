@@ -1,8 +1,8 @@
+@import "home/styles/container.scss";
+
 .posts {
   &__container {
-    overflow: auto;
-    height: calc(100vh - 57px);
-    padding: 20px;
+    @include container();
   }
 
   &__empty-block {

@@ -26,6 +26,7 @@ class Posts extends Component {
       posts: []
     };
   }
+
   componentDidMount() {
     this.onFetch();
   }
@@ -55,9 +56,13 @@ class Posts extends Component {
       () => {
         //Проскролить страницу до нужной записи, если вернулись со страницы просмотра поста
         const locationState = this.props.location.state;
-        if (locationState && locationState.postId) {
-          const container = ReactDOM.findDOMNode(this.refs.container);
-          const element = ReactDOM.findDOMNode(this.refs[locationState.postId]);
+        if (!locationState || !locationState.postId) {
+          return;
+        }
+        const container = ReactDOM.findDOMNode(this.refs.container);
+        const element = ReactDOM.findDOMNode(this.refs[locationState.postId]);
+
+        if (element) {
           container.scroll(0, element.offsetTop - 150);
         }
       }

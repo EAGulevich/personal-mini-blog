@@ -78,7 +78,8 @@ class PostEdit extends Component {
     try {
       PostRepository.addPost(this.state.model);
       this.setState({
-        mode: ADDED
+        mode: ADDED,
+        errors: null
       });
     } catch (e) {
       const errors = JSON.parse(e.message);
@@ -171,6 +172,24 @@ class PostEdit extends Component {
     );
   }
 
+  renderSuccessMessage() {
+    return (
+      <div className={this.CG("succes-msg")}>
+        <h1 className={this.CG("succes-msg-title")}>Пост создан успешно</h1>
+        <button
+          onClick={() => {
+            this.setState({
+              model: PostRepository.create(),
+              mode: READY
+            });
+          }}
+        >
+          Создать ещё
+        </button>
+      </div>
+    );
+  }
+
   render() {
     if (!this.state.model) {
       return null;
@@ -192,6 +211,7 @@ class PostEdit extends Component {
         />
         <div className={this.CG("container")}>
           {this.state.mode === READY && this.renderForm(isEditing)}
+          {this.state.mode === ADDED && this.renderSuccessMessage()}
           {this.renderComments()}
         </div>
       </div>

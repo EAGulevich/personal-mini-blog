@@ -1,5 +1,7 @@
 import faker from "faker";
 
+import { validate } from "./PostValidator";
+
 const POSTS = "posts";
 
 const LS = window.localStorage;
@@ -62,6 +64,10 @@ class PostRepository {
    * @returns {Object}
    */
   save(payload) {
+    const errors = validate(payload);
+    if (errors) {
+      throw new Error(JSON.stringify(errors));
+    }
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
 
@@ -112,6 +118,10 @@ class PostRepository {
    * @returns {Object}
    */
   addPost(payload) {
+    const errors = validate(payload);
+    if (errors) {
+      throw new Error(JSON.stringify(errors));
+    }
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
     posts.push(payload);

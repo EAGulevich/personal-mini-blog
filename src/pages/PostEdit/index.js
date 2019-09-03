@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import "./style.scss";
 import CG from "home/utils/CG";
 import Comment from "home/components/Comment";
+import Error from "home/components/Error";
 import Header from "home/components/Header";
 import PostRepository from "home/models/Posts/PostRepository";
 
@@ -74,15 +75,29 @@ class PostEdit extends Component {
   }
 
   onAddPost() {
-    PostRepository.addPost(this.state.model);
-    this.setState({
-      mode: ADDED
-    });
+    try {
+      PostRepository.addPost(this.state.model);
+      this.setState({
+        mode: ADDED
+      });
+    } catch (e) {
+      const errors = JSON.parse(e.message);
+      this.setState({
+        errors
+      });
+    }
   }
 
   onSavePost() {
-    PostRepository.save(this.state.model);
-    this.props.history.push("/", { postId: this.state.model.id });
+    try {
+      PostRepository.save(this.state.model);
+      this.props.history.push("/", { postId: this.state.model.id });
+    } catch (e) {
+      const errors = JSON.parse(e.message);
+      this.setState({
+        errors
+      });
+    }
   }
 
   onDeletePost() {
@@ -112,17 +127,22 @@ class PostEdit extends Component {
     return (
       <div className={this.CG("form")}>
         <label>Заголовок</label>
+        <Error error={this.state.errors && this.state.errors.name} />
         <input
           onChange={this.onChange.bind(this, "name")}
           value={this.state.model.name}
         />
         <label>Краткое описание</label>
+        <Error
+          error={this.state.errors && this.state.errors.shortDescription}
+        />
         <textarea
           className={this.CG("textarea")}
           onChange={this.onChange.bind(this, "shortDescription")}
           value={this.state.model.shortDescription}
         />
         <label>Полное описание</label>
+        <Error error={this.state.errors && this.state.errors.description} />
         <textarea
           className={this.CG("textarea", ["big"])}
           onChange={this.onChange.bind(this, "description")}

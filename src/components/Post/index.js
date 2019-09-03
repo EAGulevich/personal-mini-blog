@@ -16,15 +16,17 @@ class Posts extends Component {
       description: PropTypes.string.isRequired,
       /**количество комментариев */
       count: PropTypes.number.isRequired,
-      /**ссылка на страницу поста */
-      link: PropTypes.string.isRequired,
+      /**ссылка на страницу редактирования поста */
+      linkToEdit: PropTypes.string.isRequired,
+      /**колбэк для перехода на страницу просмотра поста */
+      onGoToPost: PropTypes.func.isRequired
     };
   }
   static get defaultProps() {
     return {
       name: "",
       description: "",
-      count: 0,
+      count: 0
     };
   }
   constructor(props) {
@@ -35,15 +37,21 @@ class Posts extends Component {
 
   render() {
     return (
-      <div className={this.CG()}>
+      <div className={this.CG()} onClick={this.props.onGoToPost}>
         <div className={this.CG("title")}>{this.props.name}</div>
         <div className={this.CG("description")}>{this.props.description}</div>
         <div className={this.CG("sub-text")}>
           <div className={this.CG("comment-count")}>
             Комментариев: {this.props.count}
           </div>
-          <Link className={this.CG("link")} to={this.props.link}>
-            Перейти
+          <Link
+            className={this.CG("link")}
+            to={this.props.linkToEdit}
+            onClick={e => {
+              e.stopPropagation();
+            }}
+          >
+            Редактировать
           </Link>
         </div>
       </div>

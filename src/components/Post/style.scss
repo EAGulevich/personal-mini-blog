@@ -1,4 +1,6 @@
 .post {
+  cursor: pointer;
+
   &__title {
     text-transform: uppercase;
     font-size: 30px;
@@ -11,6 +13,10 @@
     border-radius: 5px;
     font-style: italic;
     font-size: 18px;
+
+    &:hover {
+      background: #a09d9d;
+    }
   }
 
   &__sub-text {

@@ -93,6 +93,10 @@ class Posts extends Component {
     return;
   }
 
+  onGoToPost(id) {
+    this.props.history.push(`/post/${id}`);
+  }
+
   renderContent() {
     return this.state.posts.map(item => (
       <Post
@@ -102,7 +106,8 @@ class Posts extends Component {
         name={item.name}
         description={item.shortDescription}
         count={item.comments.length}
-        link={`/post/${item.id}`}
+        onGoToPost={this.onGoToPost.bind(this, item.id)}
+        linkToEdit={`/edit/${item.id}`}
       />
     ));
   }

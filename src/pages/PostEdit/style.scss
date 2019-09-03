@@ -1,0 +1,58 @@
+@import "home/styles/container.scss";
+
+.post-edit {
+  &__container {
+    @include container();
+  }
+
+  &__form {
+    border: 1px solid;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    padding: 20px;
+    margin: 40px auto 20px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  input,
+  textarea {
+    margin-bottom: 20px;
+  }
+
+  &__textarea {
+    min-height: 100px;
+    resize: vertical;
+
+    &--big {
+      min-height: 220px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__comments {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 60px);
+    margin: 20px auto;
+  }
+
+  &__comment {
+    margin-bottom: 20px;
+    text-align: right;
+
+    .comment {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+  }
+}

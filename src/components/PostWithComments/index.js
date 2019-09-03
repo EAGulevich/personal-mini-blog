@@ -70,9 +70,13 @@ class PostWithComments extends Component {
   renderComments() {
     return (
       <div className={this.CG("comments-block")}>
-        {this.props.model.comments.map((comment, i) => {
+        {this.props.model.comments.map(comment => {
           return (
-            <Comment key={i} author={comment.author} text={comment.text} />
+            <Comment
+              key={comment.id}
+              author={comment.author}
+              text={comment.text}
+            />
           );
         })}
       </div>

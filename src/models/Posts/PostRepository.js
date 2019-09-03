@@ -29,6 +29,7 @@ class PostRepository {
       let comments = [];
       for (let y = 0; y < commentCount; y++) {
         let comment = {
+          id: faker.random.uuid(),
           author: faker.name.findName(),
           text: faker.lorem.sentences(Math.random() * 4 + 1)
         };
@@ -61,7 +62,15 @@ class PostRepository {
    * @returns {Object}
    */
   save(payload) {
-    return;
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+
+    let postIndex = posts.findIndex(p => p.id === payload.id);
+    posts[postIndex] = payload;
+
+    LS.setItem(POSTS, JSON.stringify(posts));
+
+    return posts[postIndex];
   }
 
   /**
@@ -98,12 +107,29 @@ class PostRepository {
   }
 
   /**
+   * Добавление записи
+   * @param {Object} payload - добавляемая запись (должен содержать строковые поля if, name, shortDescription, description и массив comments)
+   * @returns {Object}
+   */
+  addPost(payload) {
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+    posts.push(payload);
+
+    LS.setItem(POSTS, JSON.stringify(posts));
+
+    return posts;
+  }
+
+  /**
    * Добавление комментария к посту
    * @param {String} id - идентификатор поста
    * @param {Object} comment - добавляемый комментарий (должен содержать строковые поля author и text)
    * @returns {Object}
    */
   addComment(id, comment) {
+    comment.id = faker.random.uuid();
+
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
 
@@ -121,7 +147,47 @@ class PostRepository {
    * @returns {Object}
    */
   delete(id) {
-    return;
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+    posts = posts.filter(post => post.id !== id);
+
+    LS.setItem(POSTS, JSON.stringify(posts));
+
+    return posts;
+  }
+
+  /**
+   * Удаление комментария по ID
+   * @param {String} postId - идентификатор поста
+   * @param {String} commentId - идентификатор комментария
+   * @returns {Object}
+   */
+  deleteComment(postId, commentId) {
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+
+    let postIndex = posts.findIndex(p => p.id === postId);
+    posts[postIndex].comments = posts[postIndex].comments.filter(
+      c => c.id !== commentId
+    );
+
+    LS.setItem(POSTS, JSON.stringify(posts));
+
+    return posts[postIndex];
+  }
+
+  /**
+   * Получение комментариев по ID поста
+   * @param {String} id - идентификатор поста
+   * @returns {Object}
+   */
+  getComments(id) {
+    let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
+    posts = posts.data;
+
+    let post = posts.find(p => p.id === id);
+
+    return post.comments;
   }
 }
 

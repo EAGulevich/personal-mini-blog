@@ -1,3 +1,4 @@
+@import "home/styles/index.scss";
 @import "home/styles/container.scss";
 
 .post-edit {
@@ -53,6 +54,13 @@
     .comment {
       text-align: left;
       margin-bottom: 10px;
+    }
+
+    @media (max-width: $mobileWidth) {
+      button {
+        width: 100%;
+        margin-bottom: 20px;
+      }
     }
   }
 

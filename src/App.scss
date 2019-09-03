@@ -1,3 +1,4 @@
+@import "home/styles/index.scss";
 @import "home/styles/button.scss";
 @import "home/styles/input.scss";
 
@@ -12,6 +13,7 @@ a {
 
 $backgroundColor: #f1f1f1;
 $panelWidth: 240px;
+$panelHeight: 70px;
 
 .panel {
   background: #23282c;
@@ -51,6 +53,23 @@ $panelWidth: 240px;
       }
     }
   }
+
+  @media (max-width: $tabletWidth) {
+    height: $panelHeight;
+    display: flex;
+    width: 100%;
+
+    &__link {
+      text-align: center;
+      &--active {
+        background: #1b1b1b;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
 }
 
 .page {
@@ -61,4 +80,10 @@ $panelWidth: 240px;
   right: 0;
   top: 0;
   overflow: hidden;
+
+  @media (max-width: $tabletWidth) {
+    left: 0;
+    top: $panelHeight;
+    height: calc(100vh - #{$panelHeight});
+  }
 }

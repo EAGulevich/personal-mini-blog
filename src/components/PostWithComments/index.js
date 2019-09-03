@@ -113,7 +113,11 @@ class PostWithComments extends Component {
         <div className={this.CG("description")}>
           {this.props.model.description}
         </div>
-        <div className={this.CG("comments-block-title")}>Комментарии:</div>
+        <div className={this.CG("comments-block-title")}>
+          {this.props.model.comments.length > 0
+            ? "Комментарии:"
+            : "К этому посту пока нет комментариев"}
+        </div>
         {this.renderComments()}
         {this.renderCommentAddBlock()}
       </div>

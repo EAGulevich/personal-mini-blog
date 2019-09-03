@@ -6,11 +6,7 @@ import "./style.scss";
 
 class NotFound extends Component {
   render() {
-    return (
-      <div>
-        <h1>NotFound</h1>
-      </div>
-    );
+    return <h1>Страница не найдена</h1>;
   }
 }
 

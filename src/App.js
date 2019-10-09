@@ -1,6 +1,7 @@
 import { Route, Link, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
 import React, { Component } from "react";
+import SVGInline from "react-svg-inline";
 
 import "./App.scss";
 import CG from "home/utils/CG";
@@ -8,23 +9,18 @@ import NotFound from "home/components/NotFound";
 import PostEdit from "home/pages/PostEdit";
 import Posts from "home/pages/Posts";
 import PostView from "home/pages/PostView";
-
-const LINKS = [
-  { name: "Главная", to: "/" },
-  { name: "Создать пост", to: "/edit" }
-];
+import LinkConfig from "./linkConfig";
 
 class App extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {
     return (
       <div className="app">
         <nav className={CG("panel")}>
-          {LINKS.map(link => {
+          {LinkConfig.map(link => {
             return (
               <Link
                 key={link.to}
@@ -33,7 +29,11 @@ class App extends Component {
                 ])}
                 to={link.to}
               >
-                {link.name}
+                <SVGInline
+                  className={CG("panel", "link-image")}
+                  svg={link.image}
+                />
+                <span className={CG("panel", "link-name")}> {link.name} </span>
               </Link>
             );
           })}

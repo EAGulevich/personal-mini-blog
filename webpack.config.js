@@ -17,6 +17,10 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
+      },
+      {
+        test: /\.svg$/,
+        loader: "raw-loader"
       }
     ]
   },
@@ -31,6 +35,7 @@ module.exports = {
     })
   ],
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
+    contentBase: __dirname + "/src/public"
   }
 };

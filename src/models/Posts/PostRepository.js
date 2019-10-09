@@ -98,7 +98,7 @@ class PostRepository {
    * @param {Number} perPage - сколько отдать записей
    * @returns {Object}
    */
-  getCollection(perPage) {
+  getCollection(perPage = 0) {
     let response = { data: [], total: 0 };
     let posts = LS.getItem(POSTS);
     if (!posts) {
@@ -164,6 +164,14 @@ class PostRepository {
     LS.setItem(POSTS, JSON.stringify(posts));
 
     return posts;
+  }
+
+  /**
+   * Удаление всех постов
+   */
+  deleteAllPosts() {
+    LS.setItem(POSTS, JSON.stringify([]));
+    return [];
   }
 
   /**

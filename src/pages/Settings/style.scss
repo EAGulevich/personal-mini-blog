@@ -1,0 +1,8 @@
+@import "home/styles/container.scss";
+@import "home/styles/index.scss";
+
+.settings {
+  &__container {
+    @include container();
+  }
+}

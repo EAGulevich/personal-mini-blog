@@ -10,6 +10,7 @@ import PostEdit from "home/pages/PostEdit";
 import Posts from "home/pages/Posts";
 import PostView from "home/pages/PostView";
 import LinkConfig from "./linkConfig";
+import Settings from "home/pages/Settings";
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path="/" exact component={Posts} />
             <Route path="/post/:id?" component={PostView} />
             <Route path="/edit/:id?" component={PostEdit} />
+            <Route path="/settings" component={Settings} />
             <Route component={NotFound} />
           </Switch>
         </div>

@@ -6,10 +6,10 @@
  */
 
 export default function CG(block, element = "", modifiers = []) {
-  if (typeof block !== "string") {
-    throw new Error("Первый параметр CG должен быть строкой");
-  } else if (!block) {
+  if (!block) {
     throw new Error("Не найден первый параметр CG");
+  } else if (typeof block !== "string") {
+    throw new Error("Первый параметр CG должен быть строкой");
   } else if (typeof element !== "string") {
     throw new Error("Второй параметр CG должен быть строкой");
   } else if (!Array.isArray(modifiers)) {

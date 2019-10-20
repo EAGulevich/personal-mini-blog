@@ -5,17 +5,21 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
-  },
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test-coverage": "npm run test -- --collectCoverage"
+  }, 
   "author": "Ekaterina Gulevich",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@types/jest": "^24.0.19",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "node-sass": "^4.12.0",
     "raw-loader": "^3.1.0",
     "react-svg-inline": "^2.1.1",

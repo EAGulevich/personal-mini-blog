@@ -1,6 +1,6 @@
 import faker from "faker";
 
-import { validate } from "./PostValidator";
+import { getErrors } from "./PostValidator";
 
 const POSTS = "posts";
 

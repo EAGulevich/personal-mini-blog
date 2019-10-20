@@ -1,6 +1,6 @@
-export function validate(payload) {
+export function getErrors(payload = {}) {
   const errors = {};
-  if (!payload.name) {
+    if (!payload.name) {
     errors.name = "Нет заголовка";
   }
   if (!payload.shortDescription) {

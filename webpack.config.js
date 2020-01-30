@@ -33,7 +33,10 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: "./src/public",
+    }])
   ],
   devServer: {
     historyApiFallback: true,

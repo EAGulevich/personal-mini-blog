@@ -11,10 +11,17 @@ import Posts from "home/pages/Posts";
 import PostView from "home/pages/PostView";
 import LinkConfig from "./linkConfig";
 import Settings from "home/pages/Settings";
+import setTheme from "home/utils/setTheme";
+import { THEMES } from "home/constants/themes";
 
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    const currentTheme = window.localStorage.getItem("theme");
+    setTheme(currentTheme || THEMES[0].value);
   }
 
   render() {

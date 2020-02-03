@@ -1,5 +1,15 @@
+@import "home/styles/themes.scss";
+
 .post {
+  $self: &;
+
   cursor: pointer;
+
+  &__clickable-box:hover {
+    #{$self}__title {
+      text-decoration: underline;
+    }
+  }
 
   &__title {
     text-transform: uppercase;
@@ -7,35 +17,30 @@
     padding-bottom: 4px;
   }
   &__description {
-    background: #d4d4d4;
+    background: var(--accent-background-color);
     border: 1px solid #32373b;
     padding: 10px;
     border-radius: 5px;
     font-style: italic;
     font-size: 18px;
-
-    &:hover {
-      background: #a09d9d;
-    }
   }
 
   &__sub-text {
     display: flex;
     justify-content: space-between;
     margin: 4px 0;
+    color: var(--faded-text-color);
   }
 
   &__comment-count {
-    color: #505050;
     font-size: 16px;
   }
 
   &__link {
-    color: #505050;
+    color: var(--faded-text-color);
 
     &:hover {
       text-decoration: underline;
-      color: #23282c;
     }
   }
 }

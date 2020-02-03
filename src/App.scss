@@ -1,6 +1,7 @@
 @import "home/styles/index.scss";
 @import "home/styles/button.scss";
 @import "home/styles/input.scss";
+@import "home/styles/themes.scss";
 
 * {
   font-family: Geneva, Arial, Helvetica, sans-serif;
@@ -11,13 +12,12 @@ a {
   text-decoration: none;
 }
 
-$backgroundColor: #f1f1f1;
 $panelWidth: 240px;
 $panelHeight: 70px;
 
 .panel {
   background: #23282c;
-  border: 1px solid;
+  border-right: 1px solid var(--border-color);
   height: 100vh;
   left: 0;
   position: absolute;
@@ -62,16 +62,27 @@ $panelHeight: 70px;
     }
 
     &--active {
-      &::after {
-        $size: 12px;
-        border: $size solid transparent;
-        border-right: $size solid $backgroundColor;
+      $size: 12px;
+
+      &::after,
+      &::before {
         content: " ";
         display: block;
         position: absolute;
         right: -1px;
         top: 50%;
         transform: translateY(-50%);
+        border: $size solid transparent;
+      }
+
+      &::after {
+        right: -3px;
+        border-right: $size solid var(--background-color);
+      }
+
+      &::before {
+        right: -1px;
+        border-right: $size solid #bbb;
       }
     }
 
@@ -119,14 +130,15 @@ $panelHeight: 70px;
 }
 
 .page {
-  background: $backgroundColor;
+  background: var(--background-color);
   height: 100vh;
   left: $panelWidth;
   position: absolute;
   right: 0;
   top: 0;
   overflow: hidden;
-
+  color: var(--text-color);
+ 
   @media (max-width: $tabletWidth) {
     left: 0;
     top: $panelHeight;

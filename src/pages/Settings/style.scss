@@ -5,4 +5,28 @@
   &__container {
     @include container();
   }
+
+  &__box {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background: var(--accent-background-color);
+  }
+
+  &__box-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  &__theme-item {
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background: var(--background-button-color);
+    cursor: pointer;
+  }
 }

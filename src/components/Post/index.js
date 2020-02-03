@@ -38,8 +38,10 @@ class Posts extends Component {
   render() {
     return (
       <div className={this.CG()} onClick={this.props.onGoToPost}>
-        <div className={this.CG("title")}>{this.props.name}</div>
-        <div className={this.CG("description")}>{this.props.description}</div>
+        <div className={this.CG("clickable-box")}>
+          <div className={this.CG("title")}>{this.props.name}</div>
+          <div className={this.CG("description")}>{this.props.description}</div>
+        </div>
         <div className={this.CG("sub-text")}>
           <div className={this.CG("comment-count")}>
             Комментариев: {this.props.count}

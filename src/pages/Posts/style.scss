@@ -1,5 +1,6 @@
 @import "home/styles/container.scss";
 @import "home/styles/index.scss";
+@import "home/styles/themes.scss";
 
 .posts {
   &__container {
@@ -7,9 +8,8 @@
   }
 
   &__empty-block {
-    border: 1px solid #32373b;
-    background: #d4d4d4;
-    border: 1px solid #32373b;
+    border: 1px solid var(--border-color);
+    background: var(--accent-background-color);
     padding: 10px;
     border-radius: 5px;
     text-align: center;

@@ -1,12 +1,12 @@
 @import "home/styles/index.scss";
-@import "home/styles/index.scss";
+@import "home/styles/themes.scss";
 
 .header {
   text-align: right;
   display: flex;
   align-items: center;
   height: 60px;
-  box-shadow: 10px 10px 17px #f1f1f1;
+  box-shadow: 10px 10px 17px var(--background-color);
   position: relative;
 
   &__title {
@@ -19,6 +19,8 @@
     color: #bbb;
     border-radius: 20px 0 0 6px;
     margin-top: 10px;
+    border: 1px solid var(--border-color);
+    border-right: none;
 
     @media (max-width: $tabletWidth) {
       font-size: 26px;
@@ -30,7 +32,7 @@
   }
 
   &__link {
-    color: #505050;
+    color: var(--faded-text-color);
     text-align: left;
     margin-left: 20px;
     font-size: 18px;
@@ -39,7 +41,6 @@
 
     &:hover {
       text-decoration: underline;
-      color: #23282c;
     }
   }
 }

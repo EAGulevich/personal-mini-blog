@@ -1,3 +1,5 @@
+@import "home/styles/themes.scss";
+
 .comment {
   &__author {
     font-weight: bold;
@@ -5,7 +7,7 @@
   }
 
   &__text {
-    background: #d4d4d4;
+    background: var(--accent-background-color);
     border: 1px solid #32373b;
     padding: 10px;
     border-radius: 5px;

@@ -1,23 +1,25 @@
+@import "home/styles/themes.scss";
+
 button {
-  border: 1px solid #23282c;
+  border: 1px solid var(--border-color);
   outline: none;
   box-sizing: border-box;
-  background: #f1f1f1;
+  background: var(--background-button-color);
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  color: #23282c;
+  color: var(--text-color);
   font-size: 16px;
 
   &:hover {
-    background: #23282c;
-    color: #f1f1f1;
+    background: var(--accent-background-button-color);
+    color: var(--background-button-color);
   }
 
   &:disabled {
     cursor: not-allowed;
-    background: #f1f1f1;
-    color: #23282c;
+    color: var(--faded-text-color);
+    background: var(--background-button-color);
     opacity: 0.6;
   }
 }

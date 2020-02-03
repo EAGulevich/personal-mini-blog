@@ -106,7 +106,8 @@ $panelHeight: 70px;
         background: #1b1b1b;
       }
 
-      &::after {
+      &::after,
+      &::before {
         display: none;
       }
     }
@@ -138,7 +139,7 @@ $panelHeight: 70px;
   top: 0;
   overflow: hidden;
   color: var(--text-color);
- 
+
   @media (max-width: $tabletWidth) {
     left: 0;
     top: $panelHeight;

@@ -1,6 +1,6 @@
 {
   "name": "personal-mini-blog",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Клиентская часть одностраничного веб-приложения для ведения личного мини-блога",
   "main": "index.js",
   "scripts": {

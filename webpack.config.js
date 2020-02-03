@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const WebpackAutoInject = require("webpack-auto-inject-version");
 
 module.exports = {
   entry: "./src/index.js",
@@ -34,9 +35,22 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
-    new CopyWebpackPlugin([{
-      from: "./src/public",
-    }])
+    new CopyWebpackPlugin([
+      {
+        from: "./src/public"
+      }
+    ]),
+    new WebpackAutoInject({
+      components: {
+        AutoIncreaseVersion: false
+      },
+      componentsOptions: {
+        InjectAsComment: {
+          tag: "Версия: {version} - Дата: {date}",
+          dateFormat: "HH:MM:ss"
+        }
+      }
+    })
   ],
   devServer: {
     historyApiFallback: true,

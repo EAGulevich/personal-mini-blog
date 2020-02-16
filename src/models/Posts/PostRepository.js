@@ -1,4 +1,5 @@
 import faker from "faker";
+import { find } from "lodash";
 
 import { validate } from "./PostValidator";
 
@@ -88,7 +89,7 @@ class PostRepository {
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
 
-    let post = posts.find(p => p.id === id);
+    let post = find(posts, p => p.id === id);
 
     return post;
   }
@@ -143,7 +144,7 @@ class PostRepository {
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
 
-    let post = posts.find(p => p.id === id);
+    let post = find(posts, p => p.id === id);
     post.comments.push(comment);
 
     LS.setItem(POSTS, JSON.stringify(posts));
@@ -203,7 +204,7 @@ class PostRepository {
     let posts = this.getCollection(Number.MAX_SAFE_INTEGER);
     posts = posts.data;
 
-    let post = posts.find(p => p.id === id);
+    let post = find(posts, p => p.id === id);
 
     return post.comments;
   }

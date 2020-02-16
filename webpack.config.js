@@ -4,7 +4,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackAutoInject = require("webpack-auto-inject-version");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ["@babel/polyfill", "./src/index.js"],
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "bundle.js"
@@ -13,12 +13,12 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"]
+        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: "babel-loader"
       },
       {
         test: /\.svg$/,

@@ -1,3 +1,16 @@
+:root {
+  --background-color: #f1f1f1;
+  --accent-background-color: #d4d4d4;
+
+  --border-color: #23282c;
+
+  --text-color: #23282c;
+  --faded-text-color: #505050;
+
+  --background-button-color: #d4d4d4;
+  --accent-background-button-color: #3f454a;
+}
+
 html {
   &[data-theme-style="default"] {
     --background-color: #f1f1f1;

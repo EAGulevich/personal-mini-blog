@@ -192,7 +192,7 @@ class PostEdit extends Component {
 
   render() {
     if (!this.state.model) {
-      return null;
+      return "не найдено";
     }
 
     let isEditing = !!this.props.match.params.id;

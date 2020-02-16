@@ -13,6 +13,20 @@
     border-radius: 4px;
     margin-bottom: 20px;
     background: var(--accent-background-color);
+    position: relative;
+
+    &--disable {
+      opacity: 0.5;
+    }
+  }
+
+  &__info {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    width: 300px;
+    transform: translate(0, -50%);
+    text-align: center;
   }
 
   &__box-title {

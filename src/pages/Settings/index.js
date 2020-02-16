@@ -84,20 +84,29 @@ class Settings extends Component {
   }
 
   renderThemeSwitcher() {
+    const isSupported =
+      window.CSS && window.CSS.supports && window.CSS.supports("--a", 0);
     return (
-      <div className={this.CG("box")}>
+      <div className={this.CG("box", [!isSupported ? "disable" : ""])}>
         <div className={this.CG("box-title")}>Тема:</div>
         {map(THEMES, theme => {
           return (
             <div
               key={theme.value}
-              onClick={this.onChangeTheme.bind(this, theme.value)}
+              onClick={
+                isSupported && this.onChangeTheme.bind(this, theme.value)
+              }
               className={this.CG("theme-item")}
             >
               {this.state.currentTheme == theme.value && "✔ "} {theme.title}
             </div>
           );
         })}
+        {!isSupported && (
+          <div className={this.CG("info")}>
+            {"К сожалению, изменение темы не поддерживается вашим браузером"}
+          </div>
+        )}
       </div>
     );
   }

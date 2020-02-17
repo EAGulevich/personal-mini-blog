@@ -2,6 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackAutoInject = require("webpack-auto-inject-version");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: ["@babel/polyfill", "./src/index.js"],
@@ -31,6 +33,9 @@ module.exports = {
       home: path.resolve(__dirname, "./src/")
     }
   },
+  watchOptions: {
+    ignored: __dirname + "/src/public/report.html"
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
@@ -50,6 +55,11 @@ module.exports = {
           dateFormat: "HH:MM:ss"
         }
       }
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+      openAnalyzer: false,
+      reportFilename: __dirname + "/src/public/report.html"
     })
   ],
   devServer: {

@@ -13,6 +13,7 @@ import LinkConfig from "./linkConfig";
 import Settings from "home/pages/Settings";
 import setTheme from "home/utils/setTheme";
 import { THEMES } from "home/constants/themes";
+import Stats from "home/pages/Stats";
 
 class App extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class App extends Component {
             <Route path="/post/:id?" component={PostView} />
             <Route path="/edit/:id?" component={PostEdit} />
             <Route path="/settings" component={Settings} />
+            <Route path="/stats" component={Stats} />
             <Route component={NotFound} />
           </Switch>
         </div>

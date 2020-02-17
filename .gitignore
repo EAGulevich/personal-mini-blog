@@ -1,2 +1,4 @@
 /dist
 /node_modules
+/stats.json
+/src/public/report.html

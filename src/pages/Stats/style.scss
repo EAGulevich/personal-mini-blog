@@ -1,0 +1,21 @@
+@import "home/styles/container.scss";
+@import "home/styles/themes.scss";
+
+.stats {
+  &__container {
+    @include container();
+  }
+
+  .report {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    position: absolute;
+    height: calc(100% - 200px);
+  }
+
+  h1 {
+    text-align: center;
+    color: var(--text-color);
+  }
+}

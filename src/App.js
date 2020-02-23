@@ -1,19 +1,19 @@
 import { Route, Link, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
-import React, { Component } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import SVGInline from "react-svg-inline";
 
 import "./App.scss";
 import CG from "home/utils/CG";
 import NotFound from "home/components/NotFound";
-import PostEdit from "home/pages/PostEdit";
-import Posts from "home/pages/Posts";
-import PostView from "home/pages/PostView";
 import LinkConfig from "./linkConfig";
-import Settings from "home/pages/Settings";
 import setTheme from "home/utils/setTheme";
 import { THEMES } from "home/constants/themes";
-import Stats from "home/pages/Stats";
+const Posts = lazy(() => import("home/pages/Posts"));
+const PostEdit = lazy(() => import("home/pages/PostEdit"));
+const Settings = lazy(() => import("home/pages/Settings"));
+const PostView = lazy(() => import("home/pages/PostView"));
+const Stats = lazy(() => import("home/pages/Stats"));
 
 class App extends Component {
   constructor(props) {
@@ -48,14 +48,16 @@ class App extends Component {
           })}
         </nav>
         <div className="page">
-          <Switch>
-            <Route path="/" exact component={Posts} />
-            <Route path="/post/:id?" component={PostView} />
-            <Route path="/edit/:id?" component={PostEdit} />
-            <Route path="/settings" component={Settings} />
-            <Route path="/stats" component={Stats} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<div>Загрузка...</div>}>
+            <Switch>
+              <Route path="/" exact component={Posts} />
+              <Route path="/post/:id?" component={PostView} />
+              <Route path="/edit/:id?" component={PostEdit} />
+              <Route path="/settings" component={Settings} />
+              <Route path="/stats" component={Stats} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </div>
       </div>
     );

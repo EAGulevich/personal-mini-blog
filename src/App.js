@@ -9,11 +9,21 @@ import NotFound from "home/components/NotFound";
 import LinkConfig from "./linkConfig";
 import setTheme from "home/utils/setTheme";
 import { THEMES } from "home/constants/themes";
-const Posts = lazy(() => import("home/pages/Posts"));
-const PostEdit = lazy(() => import("home/pages/PostEdit"));
-const Settings = lazy(() => import("home/pages/Settings"));
-const PostView = lazy(() => import("home/pages/PostView"));
-const Stats = lazy(() => import("home/pages/Stats"));
+const Posts = lazy(() =>
+  import(/* webpackPrefetch: true */ "home/pages/Posts")
+);
+const PostEdit = lazy(() =>
+  import(/* webpackPrefetch: true */ "home/pages/PostEdit")
+);
+const Settings = lazy(() =>
+  import(/* webpackPrefetch: true */ "home/pages/Settings")
+);
+const Stats = lazy(() =>
+  import(/* webpackPrefetch: true */ "home/pages/Stats")
+);
+const PostView = lazy(() =>
+  import(/* webpackPrefetch: true */ "home/pages/PostView")
+);
 
 class App extends Component {
   constructor(props) {

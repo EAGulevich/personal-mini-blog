@@ -1,0 +1,261 @@
+@import "home/styles/themes.scss";
+
+.preloader {
+  $size: 40px;
+  $time: 4s;
+
+  $color-cube: var(--border-color);
+
+  height: calc(#{$size} * 4 + 10px * 3);
+  width: calc(#{$size} * 4 + 10px * 3);
+  display: block;
+
+  @keyframes road {
+    0% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    12.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    25% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+
+    37.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+
+    50% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    62.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    75% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    87.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    100% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+  }
+  @keyframes road-one {
+    0% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+
+    12.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+
+    25% {
+      left: calc(#{$size} * 3 + 10px * 3);
+      top: calc(#{$size} + 10px);
+    }
+
+    37.5% {
+      left: calc(#{$size} * 3 + 10px * 3);
+      top: calc(#{$size} + 10px);
+    }
+
+    50% {
+      left: calc(#{$size} * 3 + 10px * 3);
+      top: calc(#{$size} + 10px);
+    }
+
+    62.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+
+    100% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} + 10px);
+    }
+  }
+  @keyframes road-two {
+    0% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    12.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    25% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    37.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    50% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 3 + 10px * 3);
+    }
+
+    62.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 3 + 10px * 3);
+    }
+
+    75% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 3 + 10px * 3);
+    }
+
+    87.5% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    100% {
+      left: calc(#{$size} * 2 + 10px * 2);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+  }
+  @keyframes road-three {
+    0% {
+      left: 0;
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    12.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    25% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    37.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    50% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    62.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    75% {
+      left: 0;
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+
+    100% {
+      left: 0;
+      top: calc(#{$size} * 2 + 10px * 2);
+    }
+  }
+  @keyframes road-four {
+    0% {
+      left: calc(#{$size} + 10px);
+      top: 0;
+    }
+
+    12.5% {
+      left: calc(#{$size} + 10px);
+      top: 0;
+    }
+
+    25% {
+      left: calc(#{$size} + 10px);
+      top: 0;
+    }
+
+    37.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    50% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    62.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    75% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    87.5% {
+      left: calc(#{$size} + 10px);
+      top: calc(#{$size} + 10px);
+    }
+
+    100% {
+      left: calc(#{$size} + 10px);
+      top: 0;
+    }
+  }
+
+  .cube {
+    display: inline-block;
+    border-radius: 8px;
+    width: #{$size};
+    height: #{$size};
+    position: absolute;
+    box-sizing: border-box;
+    background: $color-cube;
+    animation-iteration-count: infinite;
+    animation-duration: $time;
+
+    &:nth-child(1) {
+      animation-name: road;
+      background: #962323;
+    }
+    &:nth-child(2) {
+      animation-name: road-one;
+      opacity: 0.9;
+    }
+    &:nth-child(3) {
+      animation-name: road-two;
+      opacity: 0.8;
+    }
+    &:nth-child(4) {
+      animation-name: road-three;
+      opacity: 0.6;
+    }
+    &:nth-child(5) {
+      animation-name: road-four;
+      opacity: 0.4;
+    }
+  }
+}

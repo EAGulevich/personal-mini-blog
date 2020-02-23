@@ -9,6 +9,8 @@ import NotFound from "home/components/NotFound";
 import LinkConfig from "./linkConfig";
 import setTheme from "home/utils/setTheme";
 import { THEMES } from "home/constants/themes";
+import Preloader from "home/components/Preloader";
+
 const Posts = lazy(() =>
   import(/* webpackPrefetch: true */ "home/pages/Posts")
 );
@@ -58,7 +60,7 @@ class App extends Component {
           })}
         </nav>
         <div className="page">
-          <Suspense fallback={<div>Загрузка...</div>}>
+          <Suspense fallback={<Preloader />}>
             <Switch>
               <Route path="/" exact component={Posts} />
               <Route path="/post/:id?" component={PostView} />

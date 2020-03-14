@@ -1,5 +1,16 @@
+@import "home/styles/index.scss";
+@import "home/styles/index.scss";
+
 @mixin container {
   overflow: auto;
-  height: calc(100vh - 57px);
+  height: calc(100vh - #{$headerHeight});
   padding: 20px;
+
+  @media (max-width: $tabletWidth) {
+    height: calc(100vh - #{$headerHeight} - #{$panelTabletHeight});
+  }
+
+  @media (max-width: $mobileWidth) {
+    height: calc(100vh - #{$headerHeight} - #{$panelMobileHeight});
+  }
 }

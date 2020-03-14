@@ -4,12 +4,12 @@ import "./style.scss";
 
 export default function Error() {
   return (
-    <div class="preloader">
-      <div class="cube"></div>
-      <div class="cube"></div>
-      <div class="cube"></div>
-      <div class="cube"></div>
-      <div class="cube"></div>
+    <div className="preloader">
+      <div className="cube"></div>
+      <div className="cube"></div>
+      <div className="cube"></div>
+      <div className="cube"></div>
+      <div className="cube"></div>
     </div>
   );
 }

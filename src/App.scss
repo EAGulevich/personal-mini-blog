@@ -13,7 +13,6 @@ a {
 }
 
 $panelWidth: 240px;
-$panelHeight: 70px;
 
 .panel {
   background: #23282c;
@@ -95,13 +94,14 @@ $panelHeight: 70px;
   }
 
   @media (max-width: $tabletWidth) {
-    height: $panelHeight;
+    height: $panelTabletHeight;
     display: flex;
     width: 100%;
 
     &__link {
       justify-content: center;
       flex-direction: column;
+      padding: 2px;
 
       &--active {
         background: #1b1b1b;
@@ -150,7 +150,7 @@ $panelHeight: 70px;
 
   @media (max-width: $tabletWidth) {
     left: 0;
-    top: $panelHeight;
-    height: calc(100vh - #{$panelHeight});
+    top: $panelTabletHeight;
+    height: calc(100vh - #{$panelTabletHeight});
   }
 }

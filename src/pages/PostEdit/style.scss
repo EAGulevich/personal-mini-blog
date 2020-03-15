@@ -88,6 +88,17 @@
 
   &__succes-msg {
     text-align: center;
-    margin: 40px;
+  }
+
+  &__succes-btns {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    margin: 0 auto;
+
+    button {
+      width: 100%;
+      margin-bottom: 20px;
+    }
   }
 }

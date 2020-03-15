@@ -121,7 +121,7 @@ class PostEdit extends Component {
       ReactDOM.render(null, document.getElementById("modal"));
     };
 
-    let message = "Вы уверены, что хотите удалить?";
+    let message = "Вы уверены, что хотите это удалить?";
     if (type === POST) {
       message = "Вы уверены, что хотите удалить этот пост?";
     } else if (type === COMMENT) {
@@ -230,16 +230,25 @@ class PostEdit extends Component {
     return (
       <div className={this.CG("succes-msg")}>
         <h1 className={this.CG("succes-msg-title")}>Пост создан успешно</h1>
-        <button
-          onClick={() => {
-            this.setState({
-              model: PostRepository.create(),
-              mode: READY
-            });
-          }}
-        >
-          Создать ещё
-        </button>
+        <div className={this.CG("succes-btns")}>
+          <button
+            onClick={() => {
+              this.setState({
+                model: PostRepository.create(),
+                mode: READY
+              });
+            }}
+          >
+            Создать ещё
+          </button>
+          <button
+            onClick={() => {
+              this.props.history.push("/");
+            }}
+          >
+            Перейти ко всем постам
+          </button>
+        </div>
       </div>
     );
   }

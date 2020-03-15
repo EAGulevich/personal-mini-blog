@@ -18,7 +18,9 @@
     min-width: 255px;
     max-width: 420px;
     margin: auto;
-    margin-top: calc(50% - 210px);
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 
     @media (max-width: $mobileWidth) {
       min-width: auto;

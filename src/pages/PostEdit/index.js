@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import ReactDOM from "react-dom";
 
 import "./style.scss";
 import CG from "home/utils/CG";
@@ -7,9 +8,13 @@ import Comment from "home/components/Comment";
 import Error from "home/components/Error";
 import Header from "home/components/Header";
 import PostRepository from "home/models/Posts/PostRepository";
+import Dialog from "home/components/Dialog";
 
 const READY = "ready";
 const ADDED = "added";
+
+const POST = "post";
+const COMMENT = "comment";
 
 /** Страница для редактирования/создания поста */
 
@@ -111,12 +116,55 @@ class PostEdit extends Component {
     this.onFetchComments();
   }
 
+  renderDeleteDialog(type, cb) {
+    const closeDialog = () => {
+      ReactDOM.render(null, document.getElementById("modal"));
+    };
+
+    let message = "Вы уверены, что хотите удалить?";
+    if (type === POST) {
+      message = "Вы уверены, что хотите удалить этот пост?";
+    } else if (type === COMMENT) {
+      message = "Вы уверены, что хотите удалить этот комментарий?";
+    }
+    const dialogConfig = {
+      title: message,
+      description: "После удаления, Вы не сможете отменить это действие.",
+      buttons: [
+        {
+          name: "Удалить",
+          onClick: () => {
+            cb();
+            closeDialog();
+          }
+        },
+        {
+          name: "Отмена",
+          onClick: closeDialog
+        }
+      ]
+    };
+
+    ReactDOM.render(
+      <Dialog {...dialogConfig} />,
+      document.getElementById("modal")
+    );
+  }
+
   renderButtons(isEditing) {
     if (isEditing) {
       return (
         <>
           <button onClick={this.onSavePost}>Сохранить пост</button>
-          <button onClick={this.onDeletePost}>Удалить этот пост</button>
+          <button
+            onClick={this.renderDeleteDialog.bind(
+              this,
+              POST,
+              this.onDeletePost
+            )}
+          >
+            Удалить этот пост
+          </button>
         </>
       );
     } else {
@@ -162,7 +210,13 @@ class PostEdit extends Component {
           return (
             <div className={this.CG("comment")} key={comment.id}>
               <Comment author={comment.author} text={comment.text} />
-              <button onClick={this.onDeleteComment.bind(this, comment.id)}>
+              <button
+                onClick={this.renderDeleteDialog.bind(
+                  this,
+                  COMMENT,
+                  this.onDeleteComment.bind(this, comment.id)
+                )}
+              >
                 Удалить комментарий
               </button>
             </div>
